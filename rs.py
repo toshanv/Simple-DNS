@@ -39,7 +39,7 @@ def start(dns_table, port):
         else:
             print("[RS]: Record not found in DNS table\n")
 
-        print("[RS]: Sending '{}' to client\n".format(record_found.toString()))
+        print("[RS]: Sending '{}' to client\n".format(record_found.to_string()))
 
         csockid.send(record_found.toString().encode('utf-8'))
 
