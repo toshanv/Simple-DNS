@@ -33,21 +33,21 @@ class Entry:
 
 class Table:
     def __init__(self):
-        self._aRecords = []
-        self._nsRecord = None
+        self._a_records = []
+        self._ns_record = None
 
     def lookup(self, hostname):
         # ensure hostname is in all lowercase
         hostname = hostname.lower()
 
-        for entry in self._aRecords:
+        for entry in self._a_records:
             if entry.entrylist[0] == hostname:
                 return entry
 
-        return self._nsRecord
+        return self._ns_record
 
     def add(self, entry_to_add):
         if entry_to_add.entrylist[2] == 'A':
-            self._aRecords.append(entry_to_add)
+            self._a_records.append(entry_to_add)
         else:
-            self._nsRecord = entry_to_add
+            self._ns_record = entry_to_add
