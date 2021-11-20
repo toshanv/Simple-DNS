@@ -41,7 +41,7 @@ def start(dns_table, port):
 
         print("[RS]: Sending '{}' to client\n".format(record_found.to_string()))
 
-        csockid.send(record_found.toString().encode('utf-8'))
+        csockid.send(record_found.to_string().encode('utf-8'))
     
     ss.close()
     print("[RS]: Closed\n")

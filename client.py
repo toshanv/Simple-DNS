@@ -22,6 +22,7 @@ def lookup(hostname, port, hostname_to_find):
 
     # clean up the message received
     data_from_server = str(data_from_server.decode('utf-8'))
+    print("data after decode: ", data_from_server)
     data_from_server = data_from_server.strip()
 
     if 'Error' in data_from_server:
@@ -29,7 +30,9 @@ def lookup(hostname, port, hostname_to_find):
         return data_from_server
     else:
         # split on space
+        print(data_from_server)
         data_list = data_from_server.split(' ')
+        print(data_list)
 
         if data_list[2] == 'A':
             cs.close()
@@ -67,6 +70,7 @@ if __name__ == '__main__':
             response = lookup(RS_HOSTNAME, RS_PORT, line)
             resolved_list.append(response)
 
-    with open('RESOLVED.txt', 'w') as out_file:
+    # with open('RESOLVED.txt', 'w') as out_file:
+    with open('test.txt', 'w') as out_file:
         for entry in resolved_list:
             out_file.write(entry + '\n')
