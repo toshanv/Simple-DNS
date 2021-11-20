@@ -1,31 +1,14 @@
 class Entry:
     def __init__(self, hostname, ip, flag):
-        # self._entryList = []
-
         # ensure hostname is in all lowercase
         hostname = hostname.lower()
 
         # set values
         self._entrylist = [hostname, ip, flag]
-        # self._hostname = hostname
-        # self._ip = ip
-        # self._flag = flag
 
     @property
     def entrylist(self):
         return self._entrylist
-
-    # @property
-    # def hostname(self):
-    #     return self._hostname
-
-    # @property
-    # def ip(self):
-    #     return self._ip
-
-    # @property
-    # def flag(self):
-    #     return self._flag
 
     def to_string(self):
         return "{} {} {}".format(self._entrylist[0], self._entrylist[1], self._entrylist[2])
