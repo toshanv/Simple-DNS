@@ -73,7 +73,8 @@ if __name__ == '__main__':
 
         for line in lines:
             # remove escape chars from end of line
-            line = line[: -2]
+            if line[-2:] == '\r\n':
+                line = line[: -2]
 
             # split on space
             input_list = line.split(' ')
