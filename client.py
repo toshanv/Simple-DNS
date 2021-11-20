@@ -6,6 +6,10 @@ RS_HOSTNAME = ""
 RS_PORT = 0
 TS_PORT = 0
 
+# TODO: figure out way to close ts and rs
+# TODO: test on ilab
+# TODO: add a README
+
 
 def lookup(hostname, port, hostname_to_find):
     try:
