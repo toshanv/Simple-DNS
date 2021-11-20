@@ -9,6 +9,7 @@ TS_PORT = 0
 # TODO: figure out way to close ts and rs
 # TODO: test on ilab
 # TODO: add a README
+# TODO: update what file the client writes to
 
 
 def lookup(hostname, port, hostname_to_find):
