@@ -68,7 +68,7 @@ if __name__ == '__main__':
     # initialize dns table object
     dns_table = Table()
 
-    with open("PROJI-DNSRS.txt") as f:
+    with open("PROJI-DNSTS.txt") as f:
         lines = f.readlines()
 
         for line in lines:
