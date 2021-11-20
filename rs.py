@@ -2,40 +2,6 @@ import socket
 from sys import argv as Arguments
 from dns_table import Table, Entry
 
-if __name__ == '__main__':
-    # check to see if proper number of arguments
-    if len(Arguments) != 2:
-        print("RS Arguments error")
-        exit()
-
-    # check to see if port is int
-    try:
-        port = int(Arguments[1])
-    except:
-        print("Port must be int")
-        exit()
-
-    # initialize dns table object
-    dns_table = Table()
-
-    with open("PROJI-DNSRS.txt") as f:
-        lines = f.readlines()
-
-        for line in lines:
-            # remove escape chars from end of line
-            line = line[: -2]
-
-            # split on space
-            input_list = line.split(' ')
-
-            # create entry object
-            curr_entry = Entry(input_list[0], input_list[1], input_list[2])
-
-            # add entry to dns_table object
-            dns_table.add(curr_entry)
-
-    start(dns_table, port)
-
 
 def start(dns_table, port):
     try:
@@ -76,3 +42,38 @@ def start(dns_table, port):
         print("[RS]: Sending '{}' to client\n".format(record_found.toString()))
 
         csockid.send(record_found.toString().encode('utf-8'))
+
+
+if __name__ == '__main__':
+    # check to see if proper number of arguments
+    if len(Arguments) != 2:
+        print("RS Arguments error")
+        exit()
+
+    # check to see if port is int
+    try:
+        port = int(Arguments[1])
+    except:
+        print("Port must be int")
+        exit()
+
+    # initialize dns table object
+    dns_table = Table()
+
+    with open("PROJI-DNSRS.txt") as f:
+        lines = f.readlines()
+
+        for line in lines:
+            # remove escape chars from end of line
+            line = line[: -2]
+
+            # split on space
+            input_list = line.split(' ')
+
+            # create entry object
+            curr_entry = Entry(input_list[0], input_list[1], input_list[2])
+
+            # add entry to dns_table object
+            dns_table.add(curr_entry)
+
+    start(dns_table, port)
