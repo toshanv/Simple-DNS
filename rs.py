@@ -42,7 +42,7 @@ def start(dns_table, port):
         print("[RS]: Sending '{}' to client\n".format(record_found.to_string()))
 
         csockid.send(record_found.to_string().encode('utf-8'))
-    
+
     ss.close()
     print("[RS]: Closed\n")
     exit()
@@ -50,7 +50,7 @@ def start(dns_table, port):
 
 if __name__ == '__main__':
     # check to see if proper number of arguments
-    if len(Arguments) != 2:
+    if len(Arguments) != 3:
         print("RS arguments error\n")
         exit()
 
@@ -60,6 +60,8 @@ if __name__ == '__main__':
     except:
         print("Port must be int\n")
         exit()
+
+    ts_hostname = Arguments[2]
 
     # initialize dns table object
     dns_table = Table()
@@ -75,8 +77,12 @@ if __name__ == '__main__':
             # split on space
             input_list = line.split(' ')
 
-            # create entry object
-            curr_entry = Entry(input_list[0], input_list[1], input_list[2])
+            # check if NS
+            if input_list[2] == 'NS':
+                curr_entry = Entry(ts_hostname, input_list[1], input_list[2])
+            else:
+                # create entry object
+                curr_entry = Entry(input_list[0], input_list[1], input_list[2])
 
             # add entry to dns_table object
             dns_table.add(curr_entry)

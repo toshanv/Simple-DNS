@@ -15,10 +15,12 @@ TS_PORT = 0
 def lookup(hostname, port, hostname_to_find):
     try:
         cs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print("[C]: Client socket created")
+        print("[C]: Client socket created\n")
     except socket.error as err:
-        print('socket open error: {} \n'.format(err))
+        print("socket open error: {}\n".format(err))
         exit()
+
+    print(hostname)
 
     cs.connect((hostname, port))
     cs.send(hostname_to_find.encode('utf-8'))
@@ -27,7 +29,7 @@ def lookup(hostname, port, hostname_to_find):
 
     # clean up the message received
     data_from_server = str(data_from_server.decode('utf-8'))
-    print("data after decode: ", data_from_server)
+    print("data after decode: {}\n".format(data_from_server))
     data_from_server = data_from_server.strip()
 
     if 'Error' in data_from_server:
